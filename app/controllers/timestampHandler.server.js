@@ -34,6 +34,10 @@ module.exports = function (req, res) {
 
 var month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
+/*
+Returns the month value of a string. Uses the month array and ignores case.
+Returns -1 if the string does not equal any month.
+*/
 function monthToInt (str) {
     for(var i = 0; i < month.length; i++){
         if(str.toUpperCase() == month[i].toUpperCase()) {
