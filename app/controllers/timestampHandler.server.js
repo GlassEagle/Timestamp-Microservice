@@ -6,7 +6,7 @@ module.exports = function (req, res) {
         natural: null
     };
     
-    var param = decodeURIComponent(req.url.substring(1));
+    var param = decodeURIComponent(req.url.substring(1)); //ignore leading /
     var num = Number(param);
     var re = /^([a-z]+) ([0-9]+), ([0-9]+)$/i;
     var date;
