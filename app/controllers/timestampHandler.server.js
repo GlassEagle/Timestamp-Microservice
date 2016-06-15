@@ -9,14 +9,15 @@ module.exports = function (req, res) {
     var param = decodeURIComponent(req.url.substring(1));
     var num = Number(param);
     var re = /^([a-z]+) ([0-9]+), ([0-9]+)$/i;
+    var date;
     
     if ((num || num === 0) && Number.isSafeInteger(num)) {
-        var date = new Date(num);
+        date = new Date(num);
         
         timestamp.unix = date.valueOf();
         timestamp.natural = dateToString(date);
     } else if (re.test(param)) {
-        var date = new Date(0);
+        date = new Date(0);
         var array = re.exec(param);
         var monthVal = monthToInt(array[1]);
         
