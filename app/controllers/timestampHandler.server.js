@@ -47,6 +47,9 @@ function monthToInt (str) {
     return -1;
 }
 
+/*
+Returns a natural language date string (example: January 1, 2016).
+*/
 function dateToString(date) {
     return month[date.getUTCMonth()] + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
 }
