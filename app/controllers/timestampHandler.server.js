@@ -12,21 +12,21 @@ module.exports = function (req, res) {
     
     if ((num || num === 0) && Number.isSafeInteger(num)) {
         var date = new Date(num);
-        var str = month[date.getUTCMonth()] + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
+        
         timestamp.unix = date.valueOf();
-        timestamp.natural = str;
+        timestamp.natural = dateToString(date);
     } else if (re.test(param)) {
         var date = new Date(0);
         var array = re.exec(param);
         var monthVal = monthToInt(array[1]);
+        
         if(monthVal !== -1) {
             date.setUTCFullYear(array[3], monthVal, array[2]);
-            var str = month[date.getUTCMonth()] + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
             
             timestamp.unix = date.valueOf();
-            timestamp.natural = str;
+            timestamp.natural = dateToString(date);
         }
-    };
+    }
     
     res.json(timestamp);
 };
@@ -40,4 +40,8 @@ function monthToInt (str) {
         }
     }
     return -1;
+}
+
+function dateToString(date) {
+    return month[date.getUTCMonth()] + " " + date.getUTCDate() + ", " + date.getUTCFullYear();
 }
