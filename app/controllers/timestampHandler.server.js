@@ -13,9 +13,9 @@ module.exports = function (req, res) {
     
     if ((num || num === 0) && Number.isSafeInteger(num)) {
         //param is a unix timetimestamp
-        date = new Date(num);
+        date = new Date(num*1000);
         
-        timestamp.unix = date.valueOf();
+        timestamp.unix = date.valueOf()/1000;
         timestamp.natural = dateToString(date);
     } else if (re.test(param)) {
         //param is a natural language date
@@ -26,7 +26,7 @@ module.exports = function (req, res) {
         if(monthVal !== -1) {
             date.setUTCFullYear(array[3], monthVal, array[2]);
             
-            timestamp.unix = date.valueOf();
+            timestamp.unix = date.valueOf()/1000;
             timestamp.natural = dateToString(date);
         }
     }
