@@ -12,11 +12,13 @@ module.exports = function (req, res) {
     var date;
     
     if ((num || num === 0) && Number.isSafeInteger(num)) {
+        //param is a unix timetimestamp
         date = new Date(num);
         
         timestamp.unix = date.valueOf();
         timestamp.natural = dateToString(date);
     } else if (re.test(param)) {
+        //param is a natural language date
         date = new Date(0);
         var array = re.exec(param);
         var monthVal = monthToInt(array[1]);
